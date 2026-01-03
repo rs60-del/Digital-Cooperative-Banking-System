@@ -35,5 +35,3 @@ It includes:
 2. Create a new database:
 3. sql
    CREATE DATABASE <data_base_name>;
-   ```sql
-   CREATE DATABASE coop_bank;
