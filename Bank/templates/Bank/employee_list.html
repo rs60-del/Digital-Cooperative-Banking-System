@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>customer_Details</title>
+</head>
+<body>
+    <table border="1">
+    <tr>
+        <th>Employee_ID</th>
+        <th>Branch_ID</th>
+        <th>Ename</th>
+        <th>Eaddress</th>
+        <th>Ephonenumber</th>
+         <th>Eroll</th>
+        <th>salary</th>
+        <th>Hiredate</th>
+        <th>Leftdate</th>
+        <th>Leftdate</th>
+    </tr>
+
+    {% for c in rows %}
+    <tr>
+        <td>{{ c.0 }}</td>
+        <td>{{ c.1 }}</td>
+        <td>{{ c.2 }}</td>
+        <td>{{ c.3 }}</td>
+        <td>{{ c.4 }}</td>
+        <td>{{ c.5 }}</td>
+        <td>{{ c.6 }}</td>
+        <td>{{ c.7 }}</td>
+        <td>{{ c.8 }}</td>
+        <td>{{ c.9 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

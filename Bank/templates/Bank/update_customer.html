@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Customer</title>
+</head>
+<body>
+
+<h2>Update Customer</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>New Full Name:</label><br>
+    <input type="text" name="Full_name" placeholder="Enter updated full name"><br><br>
+    <label>Email:</label>
+<input type="email" name="Email" required>
+
+
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Create Account</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#f6f7fb; margin:40px; }
+        .card { max-width:700px; margin:auto; background:white; padding:24px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+        h2 { text-align:center; color:#222; }
+        label { display:block; margin-top:12px; font-weight:600; }
+        input[type="text"], input[type="number"], input[type="date"], select {
+            width:100%; padding:10px; margin-top:6px; border:1px solid #ddd; border-radius:6px;
+        }
+        .row { display:flex; gap:12px; }
+        .col { flex:1; }
+        button { margin-top:16px; width:100%; padding:12px; background:#1976D2; color:white; border:none; border-radius:6px; font-weight:600; cursor:pointer; }
+        .hint { font-size:13px; color:#666; margin-top:6px; }
+    </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Create New Account</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <label>Account Number</label>
+      <input type="text" name="Account_Number" placeholder="Enter account number (digits only)" required>
+
+      <label>Account Type</label>
+      <select name="Account_type" required>
+        <option value="">-- Select account type --</option>
+        <option value="Saving">Saving</option>
+        <option value="Current">Current</option>
+        <option value="Loan">Loan</option>
+        <option value="Joint">Joint</option>
+        <option value="Fixed_deposit">Fixed_deposit</option>
+        <option value="Recurring_deposit">Recurring_deposit</option>
+      </select>
+
+      <label>Customer</label>
+      <!-- If you pass 'customers' from view, show dropdown; otherwise allow text input -->
+      {% if customers %}
+      <select name="Customer_ID" required>
+        <option value="">-- Select customer --</option>
+        {% for c in customers %}
+          <!-- assuming c[0] = Customer_ID and c[1] = Full_name from view fetch -->
+          <option value="{{ c.0 }}">{{ c.1 }} ({{ c.0 }})</option>
+        {% endfor %}
+      </select>
+      {% else %}
+      <input type="text" name="Customer_ID" placeholder="Enter Customer_ID" required>
+      {% endif %}
+
+      <div class="row">
+        <div class="col">
+          <label>Opening Date</label>
+          <input type="date" name="Opening_date" value="{{ today|default:'' }}">
+          <div class="hint">Leave empty to use today's date</div>
+        </div>
+
+        <div class="col">
+          <label>Status</label>
+          <select name="status" required>
+            <option value="">-- Select status --</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Total Amount</label>
+      <input type="number" step="0.01" name="totalAmount" placeholder="Initial amount (e.g. 1000.00)" required>
+
+      <button type="submit">Create Account</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Credit Score</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 30px;
+        }
+        .form-container {
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        button {
+            background: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Add Credit Score</h2>
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <!-- Select rating target -->
+    <label>Rate For:</label>
+    <select name="rating_for" id="rating_for" onchange="toggleSections()">
+        <option value="">-- Select --</option>
+        <option value="customer">Customer</option>
+        <option value="borrower">Borrower</option>
+        <option value="employee">Employee</option>
+    </select>
+    <br><br>
+
+    <!-- Customer Section -->
+    <div id="customer_section" style="display:none;">
+        <label>Customer ID:</label>
+        <select name="CustomerID">
+            {% for c in customers %}
+                <option value="{{ c.0 }}">{{ c.0 }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Customer Rate:</label>
+        <select name="customerRate">
+            <option value="One_Star">One Star</option>
+            <option value="Two_Star">Two Star</option>
+            <option value="Three_star">Three Star</option>
+        </select>
+    </div>
+
+    <!-- Borrower Section -->
+    <div id="borrower_section" style="display:none;">
+        <label>Borrower ID:</label>
+        <select name="BorrowerID">
+            {% for b in borrowers %}
+                <option value="{{ b.0 }}">{{ b.0 }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Borrower Rate:</label>
+        <select name="BorrowerRate">
+            <option value="One_Star">One Star</option>
+            <option value="Two_Star">Two Star</option>
+            <option value="Three_star">Three Star</option>
+        </select>
+    </div>
+
+    <!-- Employee Section -->
+    <div id="employee_section" style="display:none;">
+        <label>Employee ID:</label>
+        <select name="Employee_ID">
+            {% for e in employees %}
+                <option value="{{ e.0 }}">{{ e.0 }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Employee Rate:</label>
+        <select name="EmployeeRate">
+            <option value="One_Star">One Star</option>
+            <option value="Two_Star">Two Star</option>
+            <option value="Three_star">Three Star</option>
+        </select>
+    </div>
+
+    <br><br>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+function toggleSections() {
+    let choice = document.getElementById("rating_for").value;
+
+    document.getElementById("customer_section").style.display = "none";
+    document.getElementById("borrower_section").style.display = "none";
+    document.getElementById("employee_section").style.display = "none";
+
+    if (choice === "customer") {
+        document.getElementById("customer_section").style.display = "block";
+    } 
+    else if (choice === "borrower") {
+        document.getElementById("borrower_section").style.display = "block";
+    }
+    else if (choice === "employee") {
+        document.getElementById("employee_section").style.display = "block";
+    }
+}
+</script>
+
+</div>
+
+</body>
+</html>

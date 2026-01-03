@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Transaction</title>
+    <style>
+        body { font-family: Arial; background: #f3f3f3; padding: 40px; }
+        .container { width: 40%; margin: auto; background: #fff; padding: 25px;
+                     border-radius: 10px; }
+        label { margin-top: 10px; display: block; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; }
+        button { margin-top: 15px; padding: 10px; background: green; color: white; border: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Add Transaction</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Transaction ID</label>
+        <input type="text" name="Transaction_ID" required>
+
+        <label>Customer ID</label>
+        <select name="Customer_ID">
+            {% for c in customers %}
+                <option value="{{ c.0 }}">{{ c.0 }} - {{ c.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Account Number</label>
+        <select name="Account_number">
+            {% for acc in accounts %}
+                <option value="{{ acc.0 }}">{{ acc.0 }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Transaction Type</label>
+        <select name="Transactiontype">
+            <option value="Deposit">Deposit</option>
+            <option value="Withdrawal">Withdrawal</option>
+            <option value="Transfer">Transfer</option>
+        </select>
+
+        <label>Amount</label>
+        <input type="number" step="0.01" name="Amount" required>
+
+        <label>Date</label>
+        <input type="date" name="TransactionDate" required>
+
+        <label>Time</label>
+        <input type="time" name="TransactionTime" required>
+
+        <label>Description</label>
+        <textarea name="Description"></textarea>
+
+        <button type="submit">Add Transaction</button>
+    </form>
+</div>
+
+</body>
+</html>

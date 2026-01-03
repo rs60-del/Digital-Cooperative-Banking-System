@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan_Details</title>
+</head>
+<body>
+    <table border="1">
+    <tr>
+        <th>LoanID</th>
+        <th>CustomerID</th>
+        <th>Account_Number</th>
+        <th>BorrowerID</th>
+        <th>LoanAmount</th>
+        <th>InterestRate</th>
+        <th>LoanType</th>
+        <th>StartDate</th>
+        <th>EndDate</th>
+    </tr>
+
+    {% for c in rows %}
+    <tr>
+        <td>{{ c.0 }}</td>
+        <td>{{ c.1 }}</td>
+        <td>{{ c.2 }}</td>
+        <td>{{ c.3 }}</td>
+        <td>{{ c.4 }}</td>
+        <td>{{ c.5 }}</td>
+        <td>{{ c.6 }}</td>
+        <td>{{ c.7 }}</td>
+        <td>{{ c.8 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

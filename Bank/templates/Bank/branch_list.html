@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch_Details</title>
+</head>
+<body>
+    <table border="1">
+    <tr>
+        <th>Branch_ID</th>
+        <th>Branch_name</th>
+        <th>Branch_address</th>
+        <th>Branch_phonenum</th>
+        <th>Account_Number</th> 
+    </tr>
+
+    {% for c in rows %}
+    <tr>
+        <td>{{ c.0 }}</td>
+        <td>{{ c.1 }}</td>
+        <td>{{ c.2 }}</td>
+        <td>{{ c.3 }}</td>
+        <td>{{ c.4 }}</td>
+        
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

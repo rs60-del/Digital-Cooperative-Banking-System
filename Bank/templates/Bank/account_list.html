@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account_Details</title>
+</head>
+<body>
+    <table border="1">
+    <tr>
+        <th>Account_Number</th>
+        <th>Account_type</th>
+        <th>Customer_ID</th>
+        <th>opening_date</th>
+        <th>status</th>
+        <th>totalAmount</th>
+    </tr>
+
+    {% for c in rows %}
+    <tr>
+        <td>{{ c.0 }}</td>
+        <td>{{ c.1 }}</td>
+        <td>{{ c.2 }}</td>
+        <td>{{ c.3 }}</td>
+        <td>{{ c.4 }}</td>
+        <td>{{ c.5 }}</td>
+        <td>{{ c.6 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
